@@ -11,7 +11,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const CHATBOT_URL = process.env.REACT_APP_CHATBOT_URL;
+  const CHATBOT_URL = import.meta.env.VITE_CHATBOT_URL;
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -29,7 +29,6 @@ const Chatbot = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(response.data);
 
       setMessages((prev) => [...prev, { text: response.data.response, sender: "bot" }]);
     } catch (error) {
